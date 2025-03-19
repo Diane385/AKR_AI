@@ -1,1 +1,0 @@
-# https://www.flake8rules.com/

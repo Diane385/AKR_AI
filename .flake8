@@ -1,4 +1,5 @@
 [flake8]
-max-line-length = 120
+max-line-length = 180
 ignore = E1, E302, E2, W2, F401
-exclude = .git,__pycache__,docs/source/conf.py,old,build,dist,bin,include,lib,lib64,data
+exclude = .git,__pycache__,bin,brouillon,include,lib,lib64
+enable-extensions = G # enables docstring checks

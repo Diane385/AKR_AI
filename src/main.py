@@ -1,19 +1,25 @@
-import argparse
-from core.loader.load_provider import LoadProvider
-import sys
+from AKProvider.helper import HttpRequest, Endpoint
+from AKProvider.requests_config import request_config
 
-# arguments
-parser = argparse.ArgumentParser()
-parser.add_argument("-f", "--File", default="default", type=str, help="...")
-parser.add_argument("-s", "--save", help="...", action="store_true")
-parser.add_argument("-S", "--Save", help="...")
+request_config = request_config("models-gpt-4o-mini", "2024-08-01-preview")
 
-loader = LoadProvider('provider.mp3.MP3Provider')
-mp3 = loader.cached_import('MP3Provider')
-print(sys.modules)
+url = "https://cld.akkodis.com/api/openai/deployments/{deployment-id}/chat/completions?api-version={api-version}"
+param = {
+        "deployment-id": "models-gpt-4o-mini",
+        "api-version": "2024-08-01-preview",
+    }
 
-instance = mp3("/home/user/workspace/akr/data/Accenteur_mouchet.mp3")
-instance.load()
+class_A = Endpoint(url, **param)
+Endpoint_instance = HttpRequest(url, **param)
 
-if __name__ == "__main__":
-    args = parser.parse_args()
+class_A.show()
+
+user_prompt = "pouvez-vous m'aider à debuger le temps de reponse du site web openai.com" 
+
+messages = [
+    {"role": "system", "content": user_prompt},
+    {"role": "user", "content": user_prompt},
+]
+
+response = request_config.send_message(messages)
+print("AI Response:", response)

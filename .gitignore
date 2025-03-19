@@ -3,5 +3,7 @@
 /include
 /lib64
 /data
+/brouillon
+/src/config
 pyvenv.cfg
 __pycache__
