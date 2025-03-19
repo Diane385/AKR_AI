@@ -14,7 +14,7 @@ Endpoint_instance = HttpRequest(url, **param)
 
 class_A.show()
 
-user_prompt = "pouvez-vous m'aider à debuger le temps de reponse du site web openai.com" 
+user_prompt = "introduction to langchain" 
 
 messages = [
     {"role": "system", "content": user_prompt},
