@@ -14,7 +14,7 @@ Endpoint_instance = HttpRequest(url, **param)
 
 class_A.show()
 
-user_prompt = "introduction to langchain" 
+user_prompt = "écrire une introduction de biomémitisme" 
 
 messages = [
     {"role": "system", "content": user_prompt},
