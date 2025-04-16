@@ -1,5 +1,6 @@
 from AKProvider.helper import HttpRequest, Endpoint
 from AKProvider.requests_config import request_config
+from tests.test_llmchain import fonction
 
 request_config = request_config("models-gpt-4o-mini", "2024-08-01-preview")
 
@@ -14,11 +15,11 @@ Endpoint_instance = HttpRequest(url, **param)
 
 class_A.show()
 
-user_prompt = "écrire une introduction de biomémitisme" 
+#user_prompt = "écrire une introduction de biomémitisme"
 
 messages = [
-    {"role": "system", "content": user_prompt},
-    {"role": "user", "content": user_prompt},
+    {"role": "system", "content": "je suis debutant en python"},
+    {"role": "user", "content": "les list en python"},
 ]
 
 response = request_config.send_message(messages)
