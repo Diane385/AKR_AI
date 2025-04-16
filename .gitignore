@@ -5,7 +5,5 @@
 /data
 /brouillon
 /src/config
-/src/tests
 pyvenv.cfg
 __pycache__
-debug.py
