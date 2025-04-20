@@ -1,6 +1,5 @@
 from AKProvider.helper import HttpRequest, Endpoint
 from AKProvider.requests_config import request_config
-from tests.test_llmchain import fonction
 
 request_config = request_config("models-gpt-4o-mini", "2024-08-01-preview")
 
