@@ -7,8 +7,9 @@ class Endpoint:
         self.param = param
 
     def show(self):
-        print(self.url)
-        print(self.param)
+        #print(self.url)
+        #print(self.param)
+        pass
 
 class Headers:
     def __init__(self):

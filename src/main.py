@@ -17,7 +17,7 @@ class_A.show()
 #user_prompt = "écrire une introduction de biomémitisme"
 
 messages = [
-    {"role": "system", "content": "je suis debutant en python"},
+    {"role": "system", "content": "je suis expert en python"},
     {"role": "user", "content": "les list en python"},
 ]
 
