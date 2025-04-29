@@ -5,7 +5,7 @@ def test_llmchain():
     api_version = "2024-08-01-preview"
     akkodis_provider = AkkodisAPIProvider(deployment_id=deployment_id, api_version=api_version)
 
-    prompts = ["concept de base git pull"]
+    prompts = ["c'est quoi le biomimétisme avec le maximum des détails"]
 
     result = akkodis_provider.invoke(prompts)  # Utiliser invoke pour plusieurs prompts
     #result_generate = akkodis_provider._generate(prompts)
