@@ -1,7 +1,8 @@
 from AKProvider.akkodis_llm_langchain import AkkodisAPIProvider
 from langchain.memory import ConversationBufferMemory
 from langchain_core.prompts import ChatPromptTemplate
-
+from utils.files import append_file
+import sys
 
 # Initialisation de la mémoire
 memory = ConversationBufferMemory()
@@ -36,7 +37,8 @@ def interagir_avec_utilisateur():
         print(f"Bot : {response}")
 
         # Mettre à jour l'historique de la conversation
-        conversation_history += f"Utilisateur : {user_input}\nBot : {response}\n"
+        conversation_history += f"Utilisateur : {user_input}\n\nBot : {response}\n"
+        append_file(sys.argv[1], f"{response}\n")
 
 # Lancer l'interaction
 interagir_avec_utilisateur()
