@@ -3,6 +3,8 @@ from langchain.memory import ConversationBufferMemory
 from langchain_core.prompts import ChatPromptTemplate
 from utils.files import append_file
 import sys
+import os
+
 
 # Initialisation de la mémoire
 memory = ConversationBufferMemory()
@@ -38,7 +40,9 @@ def interagir_avec_utilisateur():
 
         # Mettre à jour l'historique de la conversation
         conversation_history += f"Utilisateur : {user_input}\n\nBot : {response}\n"
-        append_file(str(sys.argv[1]), f"{response}\n")
+        raw_path = sys.argv[1]
+        normalized_path = os.path.normpath(raw_path)
+        append_file(normalized_path, f"{response}\n")
 
 # Lancer l'interaction
 interagir_avec_utilisateur()
