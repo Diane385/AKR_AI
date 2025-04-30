@@ -34,15 +34,33 @@ class AkkodisAPIProvider(BaseLLM, BaseModel):
             "messages": messages
         }
 
-        response = requests.post(url, json=data, headers=headers)
-        response.raise_for_status()  # Lève une exception pour les codes d'erreur HTTP
-
-        result = response.json()
-
-        # Créer une instance de LLMResult avec le texte généré
-        generations = [
+        try:
+            response = requests.post(url, json=data, headers=headers)
+            # response.raise_for_status()  # Raises an HTTPError for bad responses
+            result = response.json()      # Parse the JSON response
+        
+        except requests.exceptions.HTTPError as http_err:
+            print(f"HTTP error occurred: {http_err}")  # Handle HTTP errors
+        except requests.exceptions.ConnectionError as conn_err:
+            print(f"Connection error occurred: {conn_err}")  # Handle connection errors
+        except requests.exceptions.Timeout as timeout_err:
+            print(f"Timeout error occurred: {timeout_err}")  # Handle timeout errors
+        except requests.exceptions.RequestException as req_err:
+            print(f"An error occurred: {req_err}")  # Handle any other request-related errors
+        except ValueError as json_err:
+            print(f"JSON decode error: {json_err}")  # Handle JSON decoding errors
+        
+        try:
+            generations = [
             [GenerationChunk(text=choice['message']['content']) for choice in result['choices']]
         ]
+            # print(result['choices'][0]['message']['content'])
+        except:
+            generations = [
+            [GenerationChunk(text=error[0]) for error in result['error']]
+        ]
+            print(result['error'])
+        # Créer une instance de LLMResult avec le texte généré
         return LLMResult(generations=generations)
 
     @property
