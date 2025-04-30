@@ -6,6 +6,8 @@ from pydantic import BaseModel, Field
 import os
 import yaml
 
+# TODO : create try except request error
+
 class AkkodisAPIProvider(BaseLLM, BaseModel):
     deployment_id: str = Field(..., description="ID du déploiement OpenAI")
     api_version: str = Field(..., description="Version de l'API Akkodis")
@@ -36,6 +38,7 @@ class AkkodisAPIProvider(BaseLLM, BaseModel):
         response.raise_for_status()  # Lève une exception pour les codes d'erreur HTTP
 
         result = response.json()
+
         # Créer une instance de LLMResult avec le texte généré
         generations = [
             [GenerationChunk(text=choice['message']['content']) for choice in result['choices']]
